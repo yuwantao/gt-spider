@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<appender name="activexAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="log/log.log" />
+		<param name="Append" value="true" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{dd HH:mm:ss,SSS\}] %-5p [%t] [%c] - %m%n" />
+		</layout>
+	</appender>
+
+
+	<!--<appender name="outFile" class="org.apache.log4j.RollingFileAppender">    -->
+        <!--<param name="File" value="log/attrcrawler.log" />-->
+        <!--<param name="Append" value="true" />  -->
+        <!--<param name="MaxBackupIndex" value="10" />  -->
+        <!--<layout class="org.apache.log4j.PatternLayout">  -->
+            <!--<param name="ConversionPattern" value="[%d] [%r] %-5p [%l] - %m%n" />-->
+        <!--</layout>-->
+    <!--</appender>-->
+
+  
+	<appender name="outConsole" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d] [%r] %-5p [%l] - %m%n" />
+		</layout>
+		<!--过滤器设置输出的级别-->  
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">  
+            <param name="levelMin" value="debug" />
+            <param name="levelMax" value="error" />
+            <param name="AcceptOnMatch" value="true" />  
+        </filter>
+	</appender>
+	 
+	<!-- 指定logger的设置，additivity指示是否遵循缺省的继承机制-->  
+	<!--
+    <logger name="com.runway.bssp.activeXdemo" additivity="false">  
+        <priority value ="info"/>   
+        <appender-ref ref="activexAppender" />   
+    </logger>
+     -->
+	<root>
+		<priority value ="info"/>
+ 	<appender-ref ref="activexAppender" />
+		<appender-ref ref="outConsole" />
+	</root>
+	
+</log4j:configuration>
